@@ -16,7 +16,7 @@ public class ChatService implements ChatServiceManager {
 		System.out.println("point2.Service");
 		for (ChatModel cm : modelData) {
 			System.out.println(cm.getUserId());
-			if (cm.getUserId() == id) {
+			if (cm.getUserId().equals(id)) {
 				return cm.getChatLog();
 			}
 		}
@@ -29,8 +29,7 @@ public class ChatService implements ChatServiceManager {
 		boolean stat = false;
 		System.out.println(modelData.size());
 		for (int i = 0; i < modelData.size(); i++) {
-			System.out.println(modelData.get(i).getUserId() == id+"   "+modelData.get(i).getUserId()+" "+id);
-			if (modelData.get(i).getUserId() == id) {
+			if (modelData.get(i).getUserId().equals(id)) {
 				System.out.println("if condition satisfied");
 				stat = true;
 				ChatLog newMessage = new ChatLog(msg, System.currentTimeMillis(), status == "t" ? true : false);
@@ -49,7 +48,7 @@ public class ChatService implements ChatServiceManager {
 	@Override
 	public void deleteUniqueMessage(String id, String message) {
 		for (ChatModel cm : modelData) {
-			if (cm.getUserId() == id) {
+			if (cm.getUserId().equals(id)) {
 				ArrayList<ChatLog> chatlog = cm.getChatLog();
 				for (ChatLog ch : chatlog) {
 					if (ch.getMessage() == message) {
@@ -63,7 +62,7 @@ public class ChatService implements ChatServiceManager {
 	@Override
 	public void deleteAllMessage(String id) {
 		for (ChatModel cm : modelData) {
-			if (cm.getUserId() == id) {
+			if (cm.getUserId().equals(id)) {
 				cm.setChatLog(new ArrayList<ChatLog>());
 			}
 		}
